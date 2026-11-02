@@ -1,0 +1,2661 @@
+{
+  "def": "fastgpu_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        },
+        "repr": "auto"
+      },
+      "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
+      "entity": {
+        "match": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "billed_hours": {
+              "a": true,
+              "h": "Billed Hours",
+              "n": "billed_hours",
+              "r": false,
+              "sh": "Hours the provider bills for duration_hours: rounded up to whole hours on a per-hour meter and to whole minutes on a per-minute meter.",
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "billing_increment": {
+              "a": true,
+              "h": "Billing Increment",
+              "n": "billing_increment",
+              "r": false,
+              "sh": "How this provider's meter ticks for on-demand rental; varies means FastGPU has no verified figure.",
+              "t": "`$STRING`"
+            },
+            "effective_usd_hr": {
+              "a": true,
+              "h": "Effective Usd Hr",
+              "n": "effective_usd_hr",
+              "r": false,
+              "t": "`$NUMBER`"
+            },
+            "estimated_total_usd": {
+              "a": true,
+              "h": "Estimated Total Usd",
+              "n": "estimated_total_usd",
+              "r": false,
+              "sh": "effective_usd_hr times billed_hours, rounded up to the cent.",
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "fetched_at": {
+              "a": true,
+              "h": "Fetched At",
+              "n": "fetched_at",
+              "r": false,
+              "sh": "When this price was fetched from the provider (ISO 8601).",
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "fits_single_card": {
+              "a": true,
+              "h": "Fits Single Card",
+              "n": "fits_single_card",
+              "r": false,
+              "t": "`$BOOLEAN`"
+            },
+            "gpu": {
+              "a": true,
+              "h": "Gpu",
+              "n": "gpu",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "gpu_count": {
+              "a": true,
+              "h": "Gpu Count",
+              "n": "gpu_count",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "monthly_usd": {
+              "a": true,
+              "h": "Monthly Usd",
+              "n": "monthly_usd",
+              "r": false,
+              "t": "`$NUMBER`"
+            },
+            "offer_type": {
+              "a": true,
+              "h": "Offer Type",
+              "n": "offer_type",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "over_budget": {
+              "a": true,
+              "h": "Over Budget",
+              "n": "over_budget",
+              "r": false,
+              "t": "`$BOOLEAN`"
+            },
+            "page_url": {
+              "a": true,
+              "h": "Page Url",
+              "n": "page_url",
+              "r": false,
+              "sh": "Absolute URL of this GPU's live price page, with every live offer.",
+              "t": "`$STRING`"
+            },
+            "partner": {
+              "a": true,
+              "h": "Partner",
+              "n": "partner",
+              "r": false,
+              "t": "`$BOOLEAN`"
+            },
+            "provider": {
+              "a": true,
+              "h": "Provider",
+              "n": "provider",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "provider_label": {
+              "a": true,
+              "h": "Provider Label",
+              "n": "provider_label",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "quote_age_seconds": {
+              "a": true,
+              "h": "Quote Age Seconds",
+              "n": "quote_age_seconds",
+              "r": false,
+              "sh": "Seconds between fetched_at and as_of.",
+              "t": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "reason": {
+              "a": true,
+              "h": "Reason",
+              "n": "reason",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "reliability": {
+              "a": true,
+              "h": "Reliability",
+              "n": "reliability",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "score": {
+              "a": true,
+              "h": "Score",
+              "n": "score",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "tokens_per_sec": {
+              "a": true,
+              "h": "Tokens Per Sec",
+              "n": "tokens_per_sec",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "sh": "Site-relative path of this GPU's live price page, e.g.",
+              "t": "`$STRING`"
+            },
+            "usd_per_million_tokens": {
+              "a": true,
+              "h": "Usd Per Million Tokens",
+              "n": "usd_per_million_tokens",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          },
+          "name": "match",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/match",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "budget_usd_hr",
+                        "or": "budget_usd_hr",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "duration_hour",
+                        "or": "duration_hours",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "gpu_count",
+                        "or": "gpu_count",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "max_quote_age_minute",
+                        "or": "max_quote_age_minutes",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "max_total_usd",
+                        "or": "max_total_usd",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "min_gpu_memory_gb",
+                        "or": "min_gpu_memory_gb",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "model",
+                        "or": "model",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "params_b",
+                        "or": "params_b",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "precision",
+                        "or": "precision",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "cheapest to serve Llama 3 70B",
+                        "k": "query",
+                        "n": "query",
+                        "or": "query",
+                        "r": true,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "region",
+                        "or": "region",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "reserved",
+                        "or": "reserved",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "spot",
+                        "or": "spot",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "task",
+                        "or": "task",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "vram_gb",
+                        "or": "vram_gb",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "weights_gb",
+                        "or": "weights_gb",
+                        "r": false,
+                        "t": "`$NUMBER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/match",
+                  "q": {
+                    "exist": [
+                      "query"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "match"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "price": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "arch": {
+              "a": true,
+              "h": "Arch",
+              "n": "arch",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "carried_providers": {
+              "a": true,
+              "h": "Carried Providers",
+              "n": "carried_providers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "cheapest_billed_separately": {
+              "a": true,
+              "h": "Cheapest Billed Separately",
+              "n": "cheapest_billed_separately",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "cheapest_min_gpu_count": {
+              "a": true,
+              "h": "Cheapest Min Gpu Count",
+              "n": "cheapest_min_gpu_count",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "cheapest_provider": {
+              "a": true,
+              "h": "Cheapest Provider",
+              "n": "cheapest_provider",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "cheapest_usd_hr": {
+              "a": true,
+              "h": "Cheapest Usd Hr",
+              "n": "cheapest_usd_hr",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "degraded_providers": {
+              "a": true,
+              "h": "Degraded Providers",
+              "n": "degraded_providers",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "fixing_date": {
+              "a": true,
+              "h": "Fixing Date",
+              "n": "fixing_date",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "floor_availability": {
+              "a": true,
+              "h": "Floor Availability",
+              "n": "floor_availability",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_billed_separately": {
+              "a": true,
+              "h": "Floor Billed Separately",
+              "n": "floor_billed_separately",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_min_gpu_count": {
+              "a": true,
+              "h": "Floor Min Gpu Count",
+              "n": "floor_min_gpu_count",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_offer_type": {
+              "a": true,
+              "h": "Floor Offer Type",
+              "n": "floor_offer_type",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_provider": {
+              "a": true,
+              "h": "Floor Provider",
+              "n": "floor_provider",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_provider_label": {
+              "a": true,
+              "h": "Floor Provider Label",
+              "n": "floor_provider_label",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "floor_usd_hr": {
+              "a": true,
+              "h": "Floor Usd Hr",
+              "n": "floor_usd_hr",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "gpu": {
+              "a": true,
+              "h": "Gpu",
+              "n": "gpu",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "gpu_model": {
+              "a": true,
+              "h": "Gpu Model",
+              "n": "gpu_model",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "gpu_slug": {
+              "a": true,
+              "h": "Gpu Slug",
+              "n": "gpu_slug",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "hyperscaler_median_usd_hr": {
+              "a": true,
+              "h": "Hyperscaler Median Usd Hr",
+              "n": "hyperscaler_median_usd_hr",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "hyperscaler_providers": {
+              "a": true,
+              "h": "Hyperscaler Providers",
+              "n": "hyperscaler_providers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "in_stock_offers": {
+              "a": true,
+              "h": "In Stock Offers",
+              "n": "in_stock_offers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "method_version": {
+              "a": true,
+              "h": "Method Version",
+              "n": "method_version",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "offer_count": {
+              "a": true,
+              "h": "Offer Count",
+              "n": "offer_count",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "on_demand_median_usd_hr": {
+              "a": true,
+              "h": "On Demand Median Usd Hr",
+              "n": "on_demand_median_usd_hr",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "on_demand_offers": {
+              "a": true,
+              "h": "On Demand Offers",
+              "n": "on_demand_offers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "on_demand_providers": {
+              "a": true,
+              "h": "On Demand Providers",
+              "n": "on_demand_providers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "page_url": {
+              "a": true,
+              "h": "Page Url",
+              "n": "page_url",
+              "r": false,
+              "sh": "Absolute URL of this GPU's live price page, with every live offer.",
+              "t": "`$STRING`"
+            },
+            "provider_count": {
+              "a": true,
+              "h": "Provider Count",
+              "n": "provider_count",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "slug": {
+              "a": true,
+              "h": "Slug",
+              "n": "slug",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "snapshot_at": {
+              "a": true,
+              "h": "Snapshot At",
+              "n": "snapshot_at",
+              "r": false,
+              "t": "`$STRING`"
+            },
+            "spot_floor_availability": {
+              "a": true,
+              "h": "Spot Floor Availability",
+              "n": "spot_floor_availability",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_floor_billed_separately": {
+              "a": true,
+              "h": "Spot Floor Billed Separately",
+              "n": "spot_floor_billed_separately",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_floor_min_gpu_count": {
+              "a": true,
+              "h": "Spot Floor Min Gpu Count",
+              "n": "spot_floor_min_gpu_count",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$INTEGER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_floor_provider": {
+              "a": true,
+              "h": "Spot Floor Provider",
+              "n": "spot_floor_provider",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_floor_provider_label": {
+              "a": true,
+              "h": "Spot Floor Provider Label",
+              "n": "spot_floor_provider_label",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_floor_usd_hr": {
+              "a": true,
+              "h": "Spot Floor Usd Hr",
+              "n": "spot_floor_usd_hr",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "spot_providers": {
+              "a": true,
+              "h": "Spot Providers",
+              "n": "spot_providers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "stock_known_offers": {
+              "a": true,
+              "h": "Stock Known Offers",
+              "n": "stock_known_offers",
+              "r": false,
+              "t": "`$INTEGER`"
+            },
+            "tier": {
+              "a": true,
+              "h": "Tier",
+              "n": "tier",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "url": {
+              "a": true,
+              "h": "Url",
+              "n": "url",
+              "r": false,
+              "sh": "Site-relative path of this GPU's live price page, e.g.",
+              "t": "`$STRING`"
+            },
+            "vendor": {
+              "a": true,
+              "h": "Vendor",
+              "n": "vendor",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$STRING`",
+                  "`$NULL`"
+                ]
+              ]
+            },
+            "vram_gb": {
+              "a": true,
+              "h": "Vram Gb",
+              "n": "vram_gb",
+              "r": false,
+              "t": [
+                "`$ONE`",
+                [
+                  "`$NUMBER`",
+                  "`$NULL`"
+                ]
+              ]
+            }
+          },
+          "name": "price",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/fixings",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "latest",
+                        "k": "query",
+                        "n": "date",
+                        "or": "date",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "h100-sxm",
+                        "k": "query",
+                        "n": "gpu",
+                        "or": "gpu",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/fixings",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "fixings"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.fixings`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/gpus",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "tier",
+                        "or": "tier",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "vendor",
+                        "or": "vendor",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/gpus",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "gpus"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.gpus`"
+                  }
+                }
+              ]
+            },
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/availability",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "30",
+                        "k": "query",
+                        "n": "day",
+                        "or": "days",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "b200",
+                        "k": "query",
+                        "n": "gpu",
+                        "or": "gpu",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/availability",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "availability"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/aws-capacity-blocks",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "h100-sxm",
+                        "k": "query",
+                        "n": "gpu",
+                        "or": "gpu",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "p5.48xlarge",
+                        "k": "query",
+                        "n": "instance_type",
+                        "or": "instance_type",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/aws-capacity-blocks",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "aws-capacity-blocks"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/price-changes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "h100-sxm",
+                        "k": "query",
+                        "n": "gpu",
+                        "or": "gpu",
+                        "r": false,
+                        "t": "`$STRING`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
+                      },
+                      {
+                        "a": true,
+                        "ex": "nebius",
+                        "k": "query",
+                        "n": "provider",
+                        "or": "provider",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/price-changes",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "price-changes"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/v1/price-risk",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "query": [
+                      {
+                        "a": true,
+                        "ex": "h100-sxm",
+                        "k": "query",
+                        "n": "gpu",
+                        "or": "gpu",
+                        "r": false,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/v1/price-risk",
+                  "q": {},
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "price-risk"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "router": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$STRING`"
+            }
+          },
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "router",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "a": true,
+                  "bf": [
+                    "query"
+                  ],
+                  "co": {
+                    "id": "POST /api/v1/router/launch",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/api/v1/router/launch",
+                  "q": {
+                    "$action": "launch"
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "router"
+                    },
+                    {
+                      "lit": "launch"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.instance`"
+                  }
+                }
+              ]
+            },
+            "remove": {
+              "input": "data",
+              "name": "remove",
+              "points": [
+                {
+                  "a": true,
+                  "co": {
+                    "id": "DELETE /api/v1/router/instances/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
+                    "params": [
+                      {
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "k": "http",
+                  "m": "DELETE",
+                  "o": "/api/v1/router/instances/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "v1"
+                    },
+                    {
+                      "lit": "router"
+                    },
+                    {
+                      "lit": "instances"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
+                  "t": {
+                    "req": "`reqdata`",
+                    "res": "`body.instance`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Client-side rate limiting via a token bucket",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Rate limiting",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Automatic retry of transient failures with exponential backoff",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Retry",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "test": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
+          },
+          "description": "In-memory mock transport for testing without a live server",
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Test transport",
+          "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "description": "Per-request timeout with transport abort",
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Timeout",
+          "transport": "wrap",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicMatchFlow": {
+          "active": true,
+          "entity": "match",
+          "key$": "BasicMatchFlow",
+          "kind": "basic",
+          "name": "BasicMatchFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "match_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicPriceFlow": {
+          "active": true,
+          "entity": "price",
+          "key$": "BasicPriceFlow",
+          "kind": "basic",
+          "name": "BasicPriceFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "price_ref01"
+                  }
+                }
+              ]
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "price_ref01",
+                "srcdatavar": "price_ref01_data",
+                "suffix": "_dt0"
+              },
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-price_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicRouterFlow": {
+          "active": true,
+          "entity": "router",
+          "key$": "BasicRouterFlow",
+          "kind": "basic",
+          "name": "BasicRouterFlow",
+          "param": {},
+          "step": [
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "router_ref01"
+              },
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
+            },
+            {
+              "a": true,
+              "d": {},
+              "i": {
+                "ref": "router_ref01",
+                "suffix": "_rm0"
+              },
+              "m": {
+                "id": "router01"
+              },
+              "o": "remove",
+              "s": [],
+              "v": []
+            }
+          ]
+        }
+      },
+      "info": {
+        "contact": {
+          "name": "FastGPU",
+          "url": "https://fastgpu.co/docs"
+        },
+        "description": "Live GPU cloud price comparison across the whole market, as a REST API and MCP server. FastGPU brokers GPU capacity: describe the cluster you need and get competing quotes from capacity holders, each shown next to live prices from RunPod, Vast.ai, Lambda, the hyperscalers and more. Free for buyers, no sales calls. The GET /api/v1/router/instances/{id} operation was removed because it needs a FastGPU API key (401 without one). 2 GET operations that require a key or session were removed on 2026-10-23.\n\n`query` on GET /api/v1/match is marked required: the API answers 400 without a query or structured fields (verified 2026-10-25).",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "apiKey",
+          "type": "http"
+        },
+        "servers": [
+          {
+            "url": "https://fastgpu.co"
+          }
+        ],
+        "summary": "Live GPU cloud price comparison across the whole market, as a REST API and MCP server.",
+        "title": "FastGPU API",
+        "version": "1.0.0",
+        "website": "https://fastgpu.co/docs"
+      },
+      "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "in": "",
+          "name": "",
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
+      "phase": {
+        "build": {
+          "active": true
+        },
+        "top": {
+          "active": true
+        }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
+      },
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
+      "target": {
+        "go": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "go",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-cli",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "go-mcp",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "provides": {},
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [],
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
+        },
+        "lua": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "lua",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "php",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "py",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "*"
+            }
+          },
+          "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "rb",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
+          "module": {
+            "goversion": "",
+            "name": "fastgpu",
+            "package": "",
+            "path": ""
+          },
+          "name": "ts",
+          "origname": "",
+          "output": {
+            "adopt": false,
+            "create": true,
+            "path": "",
+            "repo": "",
+            "root": false,
+            "sdkrel": ""
+          },
+          "package": "@voxgig/sdkgen",
+          "provides": {
+            "schema": true,
+            "sekreto": true
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            },
+            "version": "0.0.1"
+          },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
+          "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": true
+        }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
+      }
+    }
+  },
+  "name": "fastgpu",
+  "origin": "voxgig-sdk"
+}

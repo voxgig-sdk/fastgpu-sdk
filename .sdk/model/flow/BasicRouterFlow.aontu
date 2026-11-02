@@ -1,0 +1,31 @@
+# BasicRouterFlow
+
+main: kit: flow: BasicRouterFlow:
+{
+  entity: "router",
+  kind: "basic",
+  name: "BasicRouterFlow",
+  step: [
+    {
+      i: {
+        ref: "router_ref01"
+      }
+
+      o: "create"
+    }
+
+    {
+      i: {
+        ref: "router_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        id: "router01"
+      }
+
+      o: "remove"
+    }
+  ],
+  "key$": "BasicRouterFlow"
+}

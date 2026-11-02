@@ -1,0 +1,72 @@
+<?php
+declare(strict_types=1);
+
+// Fastgpu SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+FastgpuUtility::setRegistrar(function (FastgpuUtility $u): void {
+    $u->clean = [FastgpuClean::class, 'call'];
+    $u->clean_add = [FastgpuClean::class, 'add'];
+    $u->clean_explain = [FastgpuDone::class, 'clean_explain'];
+    $u->done = [FastgpuDone::class, 'call'];
+    $u->make_error = [FastgpuMakeError::class, 'call'];
+    $u->feature_add = [FastgpuFeatureAdd::class, 'call'];
+    $u->feature_hook = [FastgpuFeatureHook::class, 'call'];
+    $u->feature_init = [FastgpuFeatureInit::class, 'call'];
+    $u->fetcher = [FastgpuFetcher::class, 'call'];
+    $u->make_fetch_def = [FastgpuMakeFetchDef::class, 'call'];
+    $u->make_context = [FastgpuMakeContext::class, 'call'];
+    $u->make_options = [FastgpuMakeOptions::class, 'call'];
+    $u->make_request = [FastgpuMakeRequest::class, 'call'];
+    $u->make_response = [FastgpuMakeResponse::class, 'call'];
+    $u->make_result = [FastgpuMakeResult::class, 'call'];
+    $u->make_point = [FastgpuMakePoint::class, 'call'];
+    $u->make_spec = [FastgpuMakeSpec::class, 'call'];
+    $u->make_url = [FastgpuMakeUrl::class, 'call'];
+    $u->param = [FastgpuParam::class, 'call'];
+    $u->prepare_auth = [FastgpuPrepareAuth::class, 'call'];
+    $u->prepare_body = [FastgpuPrepareBody::class, 'call'];
+    $u->prepare_headers = [FastgpuPrepareHeaders::class, 'call'];
+    $u->prepare_method = [FastgpuPrepareMethod::class, 'call'];
+    $u->prepare_params = [FastgpuPrepareParams::class, 'call'];
+    $u->prepare_path = [FastgpuPreparePath::class, 'call'];
+    $u->prepare_query = [FastgpuPrepareQuery::class, 'call'];
+    $u->graphql_body = [FastgpuGraphql::class, 'body'];
+    $u->graphql_errors = [FastgpuGraphql::class, 'errors'];
+    $u->result_basic = [FastgpuResultBasic::class, 'call'];
+    $u->result_body = [FastgpuResultBody::class, 'call'];
+    $u->result_headers = [FastgpuResultHeaders::class, 'call'];
+    $u->transform_request = [FastgpuTransformRequest::class, 'call'];
+    $u->transform_response = [FastgpuTransformResponse::class, 'call'];
+});

@@ -1,0 +1,52 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 9
+  metrics: count: method: 9
+
+  entity: match: {
+    path: "/api/v1/match": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: price: {
+    path: "/api/v1/availability": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/aws-capacity-blocks": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/fixings": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.fixings`")|top
+    }
+    path: "/api/v1/gpus": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.gpus`")|top
+    }
+    path: "/api/v1/price-changes": {
+      op: load: method: *GET
+    }
+    path: "/api/v1/price-risk": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: router: {
+    path: "/api/v1/router/instances/{id}": {
+      op: remove: method: *DELETE
+      op: remove: transform: res: *("`body.instance`")|top
+    }
+    path: "/api/v1/router/launch": {
+      action: "launch": {}
+      op: create: method: *POST
+      op: create: transform: res: *("`body.instance`")|top
+    }
+  }
+
+}

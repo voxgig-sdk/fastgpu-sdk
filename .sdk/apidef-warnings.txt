@@ -1,0 +1,26 @@
+{
+  point: "warning"
+  note: "Points GET /api/v1/fixings and GET /api/v1/gpus on entity=price op=list have the same selector (exist: none), so only GET /api/v1/fixings is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "price"
+  op: "list"
+  points: [
+    "GET /api/v1/fixings"
+    "GET /api/v1/gpus"
+  ]
+
+}
+
+
+{
+  point: "warning"
+  note: "Points GET /api/v1/availability, GET /api/v1/aws-capacity-blocks, GET /api/v1/price-changes and GET /api/v1/price-risk on entity=price op=load have the same selector (exist: none), so only GET /api/v1/availability is ever chosen. An action or another entity in guide.aontu tells them apart."
+  entity: "price"
+  op: "load"
+  points: [
+    "GET /api/v1/availability"
+    "GET /api/v1/aws-capacity-blocks"
+    "GET /api/v1/price-changes"
+    "GET /api/v1/price-risk"
+  ]
+
+}

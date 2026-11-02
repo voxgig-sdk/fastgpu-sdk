@@ -1,0 +1,33 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "FastGPU"
+        url: "https://fastgpu.co/docs"
+      }
+      description: `Live GPU cloud price comparison across the whole market, as a REST API and MCP server. FastGPU brokers GPU capacity: describe the cluster you need and get competing quotes from capacity holders, each shown next to live prices from RunPod, Vast.ai, Lambda, the hyperscalers and more. Free for buyers, no sales calls. The GET /api/v1/router/instances/{id} operation was removed because it needs a FastGPU API key (401 without one). 2 GET operations that require a key or session were removed on 2026-10-23.
+
+\`query\` on GET /api/v1/match is marked required: the API answers 400 without a query or structured fields (verified 2026-10-25).`
+      security: {
+        in: "header"
+        name: "Authorization"
+        prefix: "Bearer"
+        scheme: "apiKey"
+        type: "http"
+      }
+      servers: [
+        {
+          url: "https://fastgpu.co"
+        }
+      ]
+      summary: "Live GPU cloud price comparison across the whole market, as a REST API and MCP server."
+      title: "FastGPU API"
+      version: "1.0.0"
+      website: "https://fastgpu.co/docs"
+    }
+  }
+}
+

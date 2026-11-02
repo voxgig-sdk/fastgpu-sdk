@@ -1,0 +1,113 @@
+{
+  "existing": {
+    "match": {
+      "MATCH00": {
+        "billed_hours": "sdc",
+        "billing_increment": "sdd",
+        "effective_usd_hr": 222,
+        "estimated_total_usd": "sdf",
+        "fetched_at": "se0",
+        "fits_single_card": false,
+        "gpu": "se2",
+        "gpu_count": 227,
+        "monthly_usd": 228,
+        "offer_type": "se5",
+        "over_budget": true,
+        "page_url": "se7",
+        "partner": true,
+        "provider": "se9",
+        "provider_label": "sea",
+        "quote_age_seconds": "seb",
+        "reason": "sec",
+        "reliability": "sed",
+        "score": "see",
+        "tokens_per_sec": "sef",
+        "url": "sf0",
+        "usd_per_million_tokens": "sf1"
+      },
+      "MATCH01": {
+        "billed_hours": "s1b8",
+        "billing_increment": "s1b9",
+        "effective_usd_hr": 442,
+        "estimated_total_usd": "s1bb",
+        "fetched_at": "s1bc",
+        "fits_single_card": false,
+        "gpu": "s1be",
+        "gpu_count": 447,
+        "monthly_usd": 448,
+        "offer_type": "s1c1",
+        "over_budget": true,
+        "page_url": "s1c3",
+        "partner": true,
+        "provider": "s1c5",
+        "provider_label": "s1c6",
+        "quote_age_seconds": "s1c7",
+        "reason": "s1c8",
+        "reliability": "s1c9",
+        "score": "s1ca",
+        "tokens_per_sec": "s1cb",
+        "url": "s1cc",
+        "usd_per_million_tokens": "s1cd"
+      },
+      "MATCH02": {
+        "billed_hours": "s294",
+        "billing_increment": "s295",
+        "effective_usd_hr": 662,
+        "estimated_total_usd": "s297",
+        "fetched_at": "s298",
+        "fits_single_card": false,
+        "gpu": "s29a",
+        "gpu_count": 667,
+        "monthly_usd": 668,
+        "offer_type": "s29d",
+        "over_budget": true,
+        "page_url": "s29f",
+        "partner": true,
+        "provider": "s2a1",
+        "provider_label": "s2a2",
+        "quote_age_seconds": "s2a3",
+        "reason": "s2a4",
+        "reliability": "s2a5",
+        "score": "s2a6",
+        "tokens_per_sec": "s2a7",
+        "url": "s2a8",
+        "usd_per_million_tokens": "s2a9"
+      }
+    }
+  },
+  "new": {
+    "match": {
+      "match_ref01": {
+        "billed_hours": "s370",
+        "billing_increment": "s371",
+        "effective_usd_hr": 882,
+        "estimated_total_usd": "s373",
+        "fetched_at": "s374",
+        "fits_single_card": false,
+        "gpu": "s376",
+        "gpu_count": 887,
+        "monthly_usd": 888,
+        "offer_type": "s379",
+        "over_budget": true,
+        "page_url": "s37b",
+        "partner": true,
+        "provider": "s37d",
+        "provider_label": "s37e",
+        "quote_age_seconds": "s37f",
+        "reason": "s380",
+        "reliability": "s381",
+        "score": "s382",
+        "tokens_per_sec": "s383",
+        "url": "s384",
+        "usd_per_million_tokens": "s385"
+      }
+    }
+  },
+  "requests": {
+    "GET /api/v1/match": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

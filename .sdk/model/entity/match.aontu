@@ -1,0 +1,358 @@
+# Entity: match
+
+main: kit: entity: match: {
+
+  alias: field: {}
+
+  fields: {
+    billed_hours: {
+      h: "Billed Hours"
+      n: "billed_hours"
+      r: false
+      sh: "Hours the provider bills for duration_hours: rounded up to whole hours on a per-hour meter and to whole minutes on a per-minute meter."
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    billing_increment: {
+      h: "Billing Increment"
+      n: "billing_increment"
+      r: false
+      sh: "How this provider's meter ticks for on-demand rental; varies means FastGPU has no verified figure."
+      t: "`$STRING`"
+    }
+    effective_usd_hr: {
+      h: "Effective Usd Hr"
+      n: "effective_usd_hr"
+      r: false
+      t: "`$NUMBER`"
+    }
+    estimated_total_usd: {
+      h: "Estimated Total Usd"
+      n: "estimated_total_usd"
+      r: false
+      sh: "effective_usd_hr times billed_hours, rounded up to the cent."
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    fetched_at: {
+      h: "Fetched At"
+      n: "fetched_at"
+      r: false
+      sh: "When this price was fetched from the provider (ISO 8601)."
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    fits_single_card: {
+      h: "Fits Single Card"
+      n: "fits_single_card"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    gpu: {
+      h: "Gpu"
+      n: "gpu"
+      r: false
+      t: "`$STRING`"
+    }
+    gpu_count: {
+      h: "Gpu Count"
+      n: "gpu_count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    monthly_usd: {
+      h: "Monthly Usd"
+      n: "monthly_usd"
+      r: false
+      t: "`$NUMBER`"
+    }
+    offer_type: {
+      h: "Offer Type"
+      n: "offer_type"
+      r: false
+      t: "`$STRING`"
+    }
+    over_budget: {
+      h: "Over Budget"
+      n: "over_budget"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    page_url: {
+      h: "Page Url"
+      n: "page_url"
+      r: false
+      sh: "Absolute URL of this GPU's live price page, with every live offer."
+      t: "`$STRING`"
+    }
+    partner: {
+      h: "Partner"
+      n: "partner"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    provider: {
+      h: "Provider"
+      n: "provider"
+      r: false
+      t: "`$STRING`"
+    }
+    provider_label: {
+      h: "Provider Label"
+      n: "provider_label"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    quote_age_seconds: {
+      h: "Quote Age Seconds"
+      n: "quote_age_seconds"
+      r: false
+      sh: "Seconds between fetched_at and as_of."
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    reason: {
+      h: "Reason"
+      n: "reason"
+      r: false
+      t: "`$STRING`"
+    }
+    reliability: {
+      h: "Reliability"
+      n: "reliability"
+      r: false
+      t: "`$STRING`"
+    }
+    score: {
+      h: "Score"
+      n: "score"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    tokens_per_sec: {
+      h: "Tokens Per Sec"
+      n: "tokens_per_sec"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Site-relative path of this GPU's live price page, e.g."
+      t: "`$STRING`"
+    }
+    usd_per_million_tokens: {
+      h: "Usd Per Million Tokens"
+      n: "usd_per_million_tokens"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  name: "match"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/match"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "budget_usd_hr"
+                or: "budget_usd_hr"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "duration_hour"
+                or: "duration_hours"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "gpu_count"
+                or: "gpu_count"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "max_quote_age_minute"
+                or: "max_quote_age_minutes"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "max_total_usd"
+                or: "max_total_usd"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "min_gpu_memory_gb"
+                or: "min_gpu_memory_gb"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "model"
+                or: "model"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "params_b"
+                or: "params_b"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "precision"
+                or: "precision"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "cheapest to serve Llama 3 70B"
+                k: "query"
+                n: "query"
+                or: "query"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "region"
+                or: "region"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "reserved"
+                or: "reserved"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "spot"
+                or: "spot"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "task"
+                or: "task"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "vram_gb"
+                or: "vram_gb"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "weights_gb"
+                or: "weights_gb"
+                r: false
+                t: "`$NUMBER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/match"
+          q: {
+            exist: [
+              "query"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "match"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

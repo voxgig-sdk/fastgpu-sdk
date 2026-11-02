@@ -1,0 +1,724 @@
+# Entity: price
+
+main: kit: entity: price: {
+
+  alias: field: {}
+
+  fields: {
+    arch: {
+      h: "Arch"
+      n: "arch"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    carried_providers: {
+      h: "Carried Providers"
+      n: "carried_providers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    cheapest_billed_separately: {
+      h: "Cheapest Billed Separately"
+      n: "cheapest_billed_separately"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    cheapest_min_gpu_count: {
+      h: "Cheapest Min Gpu Count"
+      n: "cheapest_min_gpu_count"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    cheapest_provider: {
+      h: "Cheapest Provider"
+      n: "cheapest_provider"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    cheapest_usd_hr: {
+      h: "Cheapest Usd Hr"
+      n: "cheapest_usd_hr"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    degraded_providers: {
+      h: "Degraded Providers"
+      n: "degraded_providers"
+      r: false
+      t: "`$STRING`"
+    }
+    fixing_date: {
+      h: "Fixing Date"
+      n: "fixing_date"
+      r: false
+      t: "`$STRING`"
+    }
+    floor_availability: {
+      h: "Floor Availability"
+      n: "floor_availability"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_billed_separately: {
+      h: "Floor Billed Separately"
+      n: "floor_billed_separately"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_min_gpu_count: {
+      h: "Floor Min Gpu Count"
+      n: "floor_min_gpu_count"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_offer_type: {
+      h: "Floor Offer Type"
+      n: "floor_offer_type"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_provider: {
+      h: "Floor Provider"
+      n: "floor_provider"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_provider_label: {
+      h: "Floor Provider Label"
+      n: "floor_provider_label"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    floor_usd_hr: {
+      h: "Floor Usd Hr"
+      n: "floor_usd_hr"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    gpu: {
+      h: "Gpu"
+      n: "gpu"
+      r: false
+      t: "`$STRING`"
+    }
+    gpu_model: {
+      h: "Gpu Model"
+      n: "gpu_model"
+      r: false
+      t: "`$STRING`"
+    }
+    gpu_slug: {
+      h: "Gpu Slug"
+      n: "gpu_slug"
+      r: false
+      t: "`$STRING`"
+    }
+    hyperscaler_median_usd_hr: {
+      h: "Hyperscaler Median Usd Hr"
+      n: "hyperscaler_median_usd_hr"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    hyperscaler_providers: {
+      h: "Hyperscaler Providers"
+      n: "hyperscaler_providers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    in_stock_offers: {
+      h: "In Stock Offers"
+      n: "in_stock_offers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    method_version: {
+      h: "Method Version"
+      n: "method_version"
+      r: false
+      t: "`$STRING`"
+    }
+    offer_count: {
+      h: "Offer Count"
+      n: "offer_count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    on_demand_median_usd_hr: {
+      h: "On Demand Median Usd Hr"
+      n: "on_demand_median_usd_hr"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    on_demand_offers: {
+      h: "On Demand Offers"
+      n: "on_demand_offers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    on_demand_providers: {
+      h: "On Demand Providers"
+      n: "on_demand_providers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    page_url: {
+      h: "Page Url"
+      n: "page_url"
+      r: false
+      sh: "Absolute URL of this GPU's live price page, with every live offer."
+      t: "`$STRING`"
+    }
+    provider_count: {
+      h: "Provider Count"
+      n: "provider_count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    slug: {
+      h: "Slug"
+      n: "slug"
+      r: false
+      t: "`$STRING`"
+    }
+    snapshot_at: {
+      h: "Snapshot At"
+      n: "snapshot_at"
+      r: false
+      t: "`$STRING`"
+    }
+    spot_floor_availability: {
+      h: "Spot Floor Availability"
+      n: "spot_floor_availability"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_floor_billed_separately: {
+      h: "Spot Floor Billed Separately"
+      n: "spot_floor_billed_separately"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_floor_min_gpu_count: {
+      h: "Spot Floor Min Gpu Count"
+      n: "spot_floor_min_gpu_count"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$INTEGER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_floor_provider: {
+      h: "Spot Floor Provider"
+      n: "spot_floor_provider"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_floor_provider_label: {
+      h: "Spot Floor Provider Label"
+      n: "spot_floor_provider_label"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_floor_usd_hr: {
+      h: "Spot Floor Usd Hr"
+      n: "spot_floor_usd_hr"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    spot_providers: {
+      h: "Spot Providers"
+      n: "spot_providers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    stock_known_offers: {
+      h: "Stock Known Offers"
+      n: "stock_known_offers"
+      r: false
+      t: "`$INTEGER`"
+    }
+    tier: {
+      h: "Tier"
+      n: "tier"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "Site-relative path of this GPU's live price page, e.g."
+      t: "`$STRING`"
+    }
+    vendor: {
+      h: "Vendor"
+      n: "vendor"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$STRING`"
+          "`$NULL`"
+        ]
+      ]
+    }
+    vram_gb: {
+      h: "Vram Gb"
+      n: "vram_gb"
+      r: false
+      t: [
+        "`$ONE`"
+        [
+          "`$NUMBER`"
+          "`$NULL`"
+        ]
+      ]
+    }
+  }
+
+  name: "price"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/fixings"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "latest"
+                k: "query"
+                n: "date"
+                or: "date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "h100-sxm"
+                k: "query"
+                n: "gpu"
+                or: "gpu"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/fixings"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "fixings"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.fixings`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/gpus"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "tier"
+                or: "tier"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "vendor"
+                or: "vendor"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/gpus"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "gpus"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.gpus`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api/v1/availability"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "30"
+                k: "query"
+                n: "day"
+                or: "days"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "b200"
+                k: "query"
+                n: "gpu"
+                or: "gpu"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/availability"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "availability"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/aws-capacity-blocks"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "h100-sxm"
+                k: "query"
+                n: "gpu"
+                or: "gpu"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "p5.48xlarge"
+                k: "query"
+                n: "instance_type"
+                or: "instance_type"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/aws-capacity-blocks"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "aws-capacity-blocks"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/price-changes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "h100-sxm"
+                k: "query"
+                n: "gpu"
+                or: "gpu"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "nebius"
+                k: "query"
+                n: "provider"
+                or: "provider"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/price-changes"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "price-changes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /api/v1/price-risk"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "h100-sxm"
+                k: "query"
+                n: "gpu"
+                or: "gpu"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/v1/price-risk"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "price-risk"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

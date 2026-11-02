@@ -1,0 +1,1496 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FastGPU API",
+    "description": "Live GPU cloud price comparison across the whole market, as a REST API and MCP server. FastGPU brokers GPU capacity: describe the cluster you need and get competing quotes from capacity holders, each shown next to live prices from RunPod, Vast.ai, Lambda, the hyperscalers and more. Free for buyers, no sales calls. The GET /api/v1/router/instances/{id} operation was removed because it needs a FastGPU API key (401 without one). 2 GET operations that require a key or session were removed on 2026-10-23.\n\n`query` on GET /api/v1/match is marked required: the API answers 400 without a query or structured fields (verified 2026-10-25).",
+    "version": "1.0.0",
+    "contact": {
+      "name": "FastGPU",
+      "url": "https://fastgpu.co/docs"
+    }
+  },
+  "externalDocs": {
+    "description": "Docs, the MCP server and the open CC BY 4.0 dataset",
+    "url": "https://fastgpu.co/docs"
+  },
+  "servers": [
+    {
+      "url": "https://fastgpu.co"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Prices",
+      "description": "Live GPU rental prices, cheapest first. /api/v1/gpus needs no key."
+    },
+    {
+      "name": "Matching",
+      "description": "Match an AI workload to the cheapest live GPU that can run it. No key required."
+    },
+    {
+      "name": "Router",
+      "description": "Launch and manage GPUs through FastGPU (API key required)."
+    }
+  ],
+  "paths": {
+    "/api/v1/gpus": {
+      "get": {
+        "operationId": "list_gpu_prices",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List cheapest GPU prices",
+        "description": "One entry per GPU model with its cheapest live on-demand cloud rental price in USD per GPU-hour, the provider offering it, and how many providers rent it, from FastGPU's live price feed across marketplaces, neoclouds and hyperscalers (RunPod, Vast.ai, Lambda, AWS and more). Use it to compare GPU rental prices or to find where a named GPU is cheapest to rent. Each price is the provider's own per-GPU rate: cheapest_min_gpu_count says when it is only sold as a multi-GPU instance, and cheapest_billed_separately names what the provider bills on top of it (CPU, memory, storage), null when the rate includes CPU and memory. page_url links to the GPU's live price page with every offer. Rental prices only: it does not rent, reserve or launch GPUs. No key required.",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "query",
+            "required": false,
+            "description": "Return only GPUs made by this vendor (case-insensitive). Combines with tier: both must match. Omit for every vendor.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NVIDIA",
+                "AMD"
+              ]
+            }
+          },
+          {
+            "name": "tier",
+            "in": "query",
+            "required": false,
+            "description": "Return only one class of GPU (case-insensitive; combines with vendor). flagship: the current top training and inference accelerators (H100, H200, B200, GB200, MI300X, MI355X). datacenter: earlier or mid-range data-center and workstation cards (A100, L40S, L4, A10, RTX 6000 Ada, V100, MI210). prosumer: desktop consumer and workstation cards (RTX 5090, RTX 4090, RTX 3090, RTX A4000). entry: small inference cards (T4, A2, A16, P4). Omit for every tier.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "flagship",
+                "datacenter",
+                "prosumer",
+                "entry"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "updated_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "stale": {
+                      "type": "boolean"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "gpus": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "gpu": {
+                            "type": "string"
+                          },
+                          "vram_gb": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "vendor": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "arch": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "tier": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "cheapest_usd_hr": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "cheapest_provider": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "cheapest_min_gpu_count": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "cheapest_billed_separately": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "provider_count": {
+                            "type": "integer"
+                          },
+                          "offer_count": {
+                            "type": "integer"
+                          },
+                          "slug": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "Site-relative path of this GPU's live price page, e.g. /gpus/h100-sxm."
+                          },
+                          "page_url": {
+                            "type": "string",
+                            "description": "Absolute URL of this GPU's live price page, with every live offer."
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "count",
+                    "gpus"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/match": {
+      "get": {
+        "operationId": "match_workload",
+        "tags": [
+          "Matching"
+        ],
+        "summary": "Match a workload to the cheapest GPU",
+        "description": "Ranks up to eight GPU configurations that can run a job at the lowest live price. Describe the job in query (an open-weight model to serve or fine-tune, a model size, or a GPU need) or with the structured fields. Each match gives the GPU count, the USD per hour for the whole configuration and a one-line reason; the answer also states the VRAM the job needs and how much cheaper the top match is than a hyperscaler running the same job. Use it to decide where to run a workload; use list_gpu_prices for the price of a named GPU. Open-weight models only: an API-only model such as GPT-4 returns no matches and a note. Between otherwise equal offers, a small disclosed tie-break favors providers that pay FastGPU a referral (each match reports partner). Hard limits (budget_usd_hr, max_total_usd with duration_hours, max_quote_age_minutes) drop every configuration that breaks them; limits reports what was dropped. Read-only: it does not rent or launch GPUs. No key required.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "description": "Plain-language job, e.g. \"cheapest to serve Llama 3 70B\", \"2x H100 for fine-tuning\" or \"a GPU with 80GB of memory\". Provide this OR a structured spec below.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cheapest to serve Llama 3 70B"
+          },
+          {
+            "name": "model",
+            "in": "query",
+            "required": false,
+            "description": "Open model name to size against, e.g. \"Llama 3 70B\", \"Qwen 72B\", \"Mixtral\".",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "params_b",
+            "in": "query",
+            "required": false,
+            "description": "Model size in billions of parameters when no exact model is named.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "weights_gb",
+            "in": "query",
+            "required": false,
+            "description": "Measured size of the weights as stored, in GB: the file you will load (for example a GGUF Q4_K_M build, which holds more bits per parameter than its nominal 4). Replaces parameters times bytes per parameter in the memory estimate. Used for a model sized by its parameter count; the answer's workload.weights_gb is null when it was not (an image or speech model sized as a whole pipeline).",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "vram_gb",
+            "in": "query",
+            "required": false,
+            "description": "Rough VRAM the job needs, in GB, if you already know it.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "task",
+            "in": "query",
+            "required": false,
+            "description": "What the job does.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "inference",
+                "finetune-lora",
+                "finetune-full",
+                "generate",
+                "transcribe",
+                "embed"
+              ]
+            }
+          },
+          {
+            "name": "precision",
+            "in": "query",
+            "required": false,
+            "description": "Numeric precision to size the model at.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "fp16",
+                "int8",
+                "int4"
+              ]
+            }
+          },
+          {
+            "name": "gpu_count",
+            "in": "query",
+            "required": false,
+            "description": "Exact positive GPU count. Overrides a count in query text. Returns no matches if no supported configuration fits; omit for automatic sizing.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "min_gpu_memory_gb",
+            "in": "query",
+            "required": false,
+            "description": "Memory each GPU card must have, in GB (e.g. 80 for 80GB-class cards such as the H100 or A100 80GB). Smaller cards are never returned. On its own it lists every card that size, cheapest first.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "budget_usd_hr",
+            "in": "query",
+            "required": false,
+            "description": "Hard limit on the hourly price of the whole configuration, in USD. Configurations above it are not returned.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "duration_hours",
+            "in": "query",
+            "required": false,
+            "description": "How long the job will run, in hours (fractions are fine). When sent, each match carries billed_hours and estimated_total_usd.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "max_total_usd",
+            "in": "query",
+            "required": false,
+            "description": "Hard limit on estimated_total_usd, the GPU rental cost of the whole job, in USD. Needs duration_hours. Configurations above it are not returned.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "max_quote_age_minutes",
+            "in": "query",
+            "required": false,
+            "description": "Hard limit on how old a price quote may be, in minutes. Configurations whose price was fetched from the provider longer ago are not returned.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "description": "Restrict to a data-residency region.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "US",
+                "EU",
+                "ASIA"
+              ]
+            }
+          },
+          {
+            "name": "spot",
+            "in": "query",
+            "required": false,
+            "description": "Set true to include interruptible spot capacity for a cheaper rate.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          },
+          {
+            "name": "reserved",
+            "in": "query",
+            "required": false,
+            "description": "Set true to include reserved / committed-term capacity for a lower rate.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "updated_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "stale": {
+                      "type": "boolean"
+                    },
+                    "workload": {
+                      "type": "object",
+                      "properties": {
+                        "interpretation": {
+                          "type": "string"
+                        },
+                        "identified": {
+                          "type": "boolean"
+                        },
+                        "task": {
+                          "type": "string"
+                        },
+                        "precision": {
+                          "type": "string"
+                        },
+                        "vram_required_gb": {
+                          "type": "number"
+                        },
+                        "gpu_count": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "min_gpu_memory_gb": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "gpu_vendors": {
+                          "type": [
+                            "array",
+                            "null"
+                          ],
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hero": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "hyperscaler_ceiling": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "savings_pct": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "same_model": {
+                          "type": [
+                            "boolean",
+                            "null"
+                          ]
+                        }
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "matches": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "gpu": {
+                            "type": "string"
+                          },
+                          "gpu_count": {
+                            "type": "integer"
+                          },
+                          "effective_usd_hr": {
+                            "type": "number"
+                          },
+                          "monthly_usd": {
+                            "type": "number"
+                          },
+                          "provider": {
+                            "type": "string"
+                          },
+                          "provider_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "offer_type": {
+                            "type": "string"
+                          },
+                          "reliability": {
+                            "type": "string"
+                          },
+                          "fits_single_card": {
+                            "type": "boolean"
+                          },
+                          "over_budget": {
+                            "type": "boolean"
+                          },
+                          "tokens_per_sec": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "usd_per_million_tokens": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "score": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "partner": {
+                            "type": "boolean"
+                          },
+                          "reason": {
+                            "type": "string"
+                          },
+                          "billing_increment": {
+                            "type": "string",
+                            "enum": [
+                              "per-second",
+                              "per-minute",
+                              "per-hour",
+                              "varies"
+                            ],
+                            "description": "How this provider's meter ticks for on-demand rental; varies means FastGPU has no verified figure."
+                          },
+                          "billed_hours": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "Hours the provider bills for duration_hours: rounded up to whole hours on a per-hour meter and to whole minutes on a per-minute meter. Null when duration_hours was not sent."
+                          },
+                          "estimated_total_usd": {
+                            "type": [
+                              "number",
+                              "null"
+                            ],
+                            "description": "effective_usd_hr times billed_hours, rounded up to the cent. GPU rental only: storage, data transfer, CPU and memory billed separately, and provider minimums are not included. Null when duration_hours was not sent."
+                          },
+                          "fetched_at": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "description": "When this price was fetched from the provider (ISO 8601)."
+                          },
+                          "quote_age_seconds": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ],
+                            "description": "Seconds between fetched_at and as_of. Null when the fetch time is unknown."
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "Site-relative path of this GPU's live price page, e.g. /gpus/h100-sxm."
+                          },
+                          "page_url": {
+                            "type": "string",
+                            "description": "Absolute URL of this GPU's live price page, with every live offer."
+                          }
+                        }
+                      }
+                    },
+                    "as_of": {
+                      "type": "string",
+                      "description": "When this answer was computed (ISO 8601). Quote ages are measured against it."
+                    },
+                    "limits": {
+                      "type": "object",
+                      "description": "The hard limits this answer applied (null when one was not sent) and how many configurations each one left out.",
+                      "properties": {
+                        "budget_usd_hr": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "duration_hours": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "max_total_usd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "max_quote_age_minutes": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "excluded": {
+                          "type": "object",
+                          "properties": {
+                            "over_budget_usd_hr": {
+                              "type": "integer"
+                            },
+                            "over_max_total_usd": {
+                              "type": "integer"
+                            },
+                            "older_than_max_quote_age_minutes": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "nearest_excluded": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "description": "When the limits leave no match: the cheapest configuration that can still run the job, and the limits it breaks.",
+                          "properties": {
+                            "gpu": {
+                              "type": "string"
+                            },
+                            "gpu_count": {
+                              "type": "integer"
+                            },
+                            "effective_usd_hr": {
+                              "type": "number"
+                            },
+                            "monthly_usd": {
+                              "type": "number"
+                            },
+                            "provider": {
+                              "type": "string"
+                            },
+                            "provider_label": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "offer_type": {
+                              "type": "string"
+                            },
+                            "reliability": {
+                              "type": "string"
+                            },
+                            "fits_single_card": {
+                              "type": "boolean"
+                            },
+                            "over_budget": {
+                              "type": "boolean"
+                            },
+                            "tokens_per_sec": {
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "usd_per_million_tokens": {
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "score": {
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "partner": {
+                              "type": "boolean"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "billing_increment": {
+                              "type": "string",
+                              "enum": [
+                                "per-second",
+                                "per-minute",
+                                "per-hour",
+                                "varies"
+                              ],
+                              "description": "How this provider's meter ticks for on-demand rental; varies means FastGPU has no verified figure."
+                            },
+                            "billed_hours": {
+                              "type": [
+                                "number",
+                                "null"
+                              ],
+                              "description": "Hours the provider bills for duration_hours: rounded up to whole hours on a per-hour meter and to whole minutes on a per-minute meter. Null when duration_hours was not sent."
+                            },
+                            "estimated_total_usd": {
+                              "type": [
+                                "number",
+                                "null"
+                              ],
+                              "description": "effective_usd_hr times billed_hours, rounded up to the cent. GPU rental only: storage, data transfer, CPU and memory billed separately, and provider minimums are not included. Null when duration_hours was not sent."
+                            },
+                            "fetched_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "When this price was fetched from the provider (ISO 8601)."
+                            },
+                            "quote_age_seconds": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ],
+                              "description": "Seconds between fetched_at and as_of. Null when the fetch time is unknown."
+                            },
+                            "url": {
+                              "type": "string",
+                              "description": "Site-relative path of this GPU's live price page, e.g. /gpus/h100-sxm."
+                            },
+                            "page_url": {
+                              "type": "string",
+                              "description": "Absolute URL of this GPU's live price page, with every live offer."
+                            },
+                            "breaks": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "Why there are no matches, when there are none."
+                    },
+                    "error": {
+                      "type": "string",
+                      "description": "Present when the request was not valid; says what to send instead."
+                    }
+                  },
+                  "required": [
+                    "count",
+                    "matches"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/fixings": {
+      "get": {
+        "operationId": "list_gpu_fixings",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List daily GPU price fixings",
+        "description": "The frozen daily record of GPU rental prices: one row per GPU model per UTC day, taken at 07:00 UTC from the live price snapshot and never revised. Each row carries the floor (the cheapest posted on-demand price outside the hyperscalers) and the provider that set it, the on-demand median across providers, the spot floor, the hyperscaler median, the provider count behind each figure, and the in-stock share as a numerator and a denominator. Prices are posted list prices in USD per GPU-hour, not transaction prices. Newest day first; filter by date or GPU and page with limit and offset. The method is published at /methodology/fixings. No key required.",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "description": "One fixing day as YYYY-MM-DD, or \"latest\" for the most recent one. Omit for the whole archive, newest day first.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "latest"
+          },
+          {
+            "name": "gpu",
+            "in": "query",
+            "required": false,
+            "description": "One GPU's fixing series, by slug (h100-sxm) or model name (H100 SXM).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "h100-sxm"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Rows per page (default 100, at most 500).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Rows to skip, for paging (default 0). The response's next_offset is the value for the next page, or null on the last one.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "current_method_version": {
+                      "type": "string"
+                    },
+                    "fixing_hour_utc": {
+                      "type": "integer"
+                    },
+                    "first_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "latest_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "days": {
+                      "type": "integer"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "next_offset": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "fixings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "fixing_date": {
+                            "type": "string"
+                          },
+                          "gpu_model": {
+                            "type": "string"
+                          },
+                          "gpu_slug": {
+                            "type": "string"
+                          },
+                          "floor_usd_hr": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "floor_provider": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "floor_provider_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "floor_offer_type": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "floor_min_gpu_count": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "floor_billed_separately": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "floor_availability": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "on_demand_median_usd_hr": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "on_demand_providers": {
+                            "type": "integer"
+                          },
+                          "spot_floor_usd_hr": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "spot_floor_provider": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "spot_floor_provider_label": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "spot_floor_min_gpu_count": {
+                            "type": [
+                              "integer",
+                              "null"
+                            ]
+                          },
+                          "spot_floor_billed_separately": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "spot_floor_availability": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "spot_providers": {
+                            "type": "integer"
+                          },
+                          "hyperscaler_median_usd_hr": {
+                            "type": [
+                              "number",
+                              "null"
+                            ]
+                          },
+                          "hyperscaler_providers": {
+                            "type": "integer"
+                          },
+                          "on_demand_offers": {
+                            "type": "integer"
+                          },
+                          "stock_known_offers": {
+                            "type": "integer"
+                          },
+                          "in_stock_offers": {
+                            "type": "integer"
+                          },
+                          "carried_providers": {
+                            "type": "integer"
+                          },
+                          "degraded_providers": {
+                            "type": "string"
+                          },
+                          "snapshot_at": {
+                            "type": "string"
+                          },
+                          "method_version": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "Site-relative path of this GPU's live price page, e.g. /gpus/h100-sxm."
+                          },
+                          "page_url": {
+                            "type": "string",
+                            "description": "Absolute URL of this GPU's live price page, with every live offer."
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "count",
+                    "fixings"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/availability": {
+      "get": {
+        "operationId": "list_gpu_availability",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List the GPU Availability Index",
+        "description": "How often each GPU could actually be rented: one frozen row per GPU model per completed UTC day, computed from FastGPU's recorded stock history (each provider's own stock tier or rentable host count, on-demand and community offers only) and never revised. Each row gives the providers listing the GPU, the providers that exposed a stock signal, the providers that had it rentable at least once that day, the signalled and rentable stock checks, the rentable share (rentable / signalled; offers without a signal never count as in stock or sold out) and the marketplace host depth. Newest day first. The method is published at /gpu-availability#method. No key required.",
+        "parameters": [
+          {
+            "name": "gpu",
+            "in": "query",
+            "required": false,
+            "description": "One GPU's series, by slug (b200) or model name (B200).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "b200"
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "description": "Completed days to return, newest first (default 30, at most 120).",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-risk": {
+      "get": {
+        "operationId": "get_gpu_price_risk",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "Get GPU price volatility and spread",
+        "description": "Price-risk statistics per GPU from FastGPU's own record of posted rental prices: realized volatility of the recorded daily floor (standard deviation of daily log changes, per day and annualized with the square root of 365, with the number of changes behind it) over the last 30 days and the full history, the largest one-day move, drawdown and run-up, the spread across providers right now (P10, median and P90 of each non-hyperscaler provider's lowest buyable price), which provider set the daily fixing's floor and how persistently, the basis between the on-demand median and the floor and between the hyperscaler median and the on-demand median, and confirmed list-price changes over 60 days. Posted prices, not transactions, and not a settlement reference. No key required.",
+        "parameters": [
+          {
+            "name": "gpu",
+            "in": "query",
+            "required": false,
+            "description": "One GPU, by slug; adds every daily floor, daily change and provider price behind its figures.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "h100-sxm"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/aws-capacity-blocks": {
+      "get": {
+        "operationId": "list_aws_capacity_blocks",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List AWS Capacity Block offers",
+        "description": "What AWS answers, every 6 hours, to \"when can I start N GPUs and for how much\": the latest run of read-only EC2 DescribeCapacityBlockOfferings calls across its GPU instance types (H100, H200, B200, B300, A100), default-enabled Regions and four shapes (1 instance for 1 day or 1 week, 8 instances for 2 or 13 weeks). Each row gives how many offers AWS returned, the earliest start with its upfront fee, and the lowest price per GPU-hour with its start; status 'error' rows carry AWS's error code. AWS prices Capacity Blocks by supply and demand and shows them only to signed-in accounts. Fees are USD for Linux. The response carries the method. No key required.",
+        "parameters": [
+          {
+            "name": "gpu",
+            "in": "query",
+            "required": false,
+            "description": "One GPU, by its /gpus slug (h100-sxm, h200, b200).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "h100-sxm"
+          },
+          {
+            "name": "instance_type",
+            "in": "query",
+            "required": false,
+            "description": "One EC2 instance type.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "p5.48xlarge"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/price-changes": {
+      "get": {
+        "operationId": "list_price_changes",
+        "tags": [
+          "Prices"
+        ],
+        "summary": "List GPU price changes",
+        "description": "FastGPU's price-change log: every list-price change its own record of posted prices confirms (a move between two prices that each held for two complete UTC days, at least a cent apart, on-demand and reserved, for providers that publish their own per-GPU rate) plus changes providers announce on their own pages, newest first. Each entry gives the provider, GPU, old and new price per GPU-hour, the change in percent, the day (or window) of the change and, for an announced change, the provider's page and wording. No key required.",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "description": "One provider, by slug (nebius, runpod, aws).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "nebius"
+          },
+          {
+            "name": "gpu",
+            "in": "query",
+            "required": false,
+            "description": "One GPU, by its /gpus slug (h100-sxm).",
+            "schema": {
+              "type": "string"
+            },
+            "example": "h100-sxm"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Entries per page (default 50, at most 200).",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Entries to skip, for paging (default 0).",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/router/launch": {
+      "post": {
+        "operationId": "router_launch",
+        "tags": [
+          "Router"
+        ],
+        "summary": "Launch a GPU (route + provision)",
+        "description": "Route a described job to the best in-stock connected provider (RunPod, Vast.ai, Hyperstack) and PROVISION a real GPU, billed by the second to your prepaid FastGPU wallet. Returns the instance; poll GET /api/v1/router/instances/{id} for the connection URL once it is running. Requires an API key with wallet balance.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Describe the job, e.g. \"fine-tune Llama 3 8B\" or \"1x H100 for training\"."
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instance": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "provider": {
+                          "type": "string"
+                        },
+                        "provider_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "gpu_model": {
+                          "type": "string"
+                        },
+                        "gpu_count": {
+                          "type": "integer"
+                        },
+                        "price_usd_hr": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "provider_price_usd_hr": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "connection": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "jupyterUrl": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "sshHost": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "sshPort": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "publicIp": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "note": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "error": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "job_query": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "charged_usd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "started_at": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "created_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "instance"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        }
+      }
+    },
+    "/api/v1/router/instances/{id}": {
+      "delete": {
+        "operationId": "router_terminate",
+        "tags": [
+          "Router"
+        ],
+        "summary": "Terminate a GPU instance",
+        "description": "Terminate one instance: destroys the GPU on the provider and settles your wallet to the actual elapsed cost. Requires an API key.",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "id identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "instance": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "provider": {
+                          "type": "string"
+                        },
+                        "provider_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "gpu_model": {
+                          "type": "string"
+                        },
+                        "gpu_count": {
+                          "type": "integer"
+                        },
+                        "price_usd_hr": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "provider_price_usd_hr": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "connection": {
+                          "type": [
+                            "object",
+                            "null"
+                          ],
+                          "properties": {
+                            "jupyterUrl": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "sshHost": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "sshPort": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "publicIp": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "note": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          }
+                        },
+                        "error": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "job_query": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "charged_usd": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "started_at": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "created_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "instance"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "FastGPU API key (fgpu_live_...), sent as an Authorization: Bearer header. Create one at /app."
+      }
+    }
+  }
+}

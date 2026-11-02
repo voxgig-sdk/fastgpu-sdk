@@ -1,0 +1,40 @@
+# BasicPriceFlow
+
+main: kit: flow: BasicPriceFlow:
+{
+  entity: "price",
+  kind: "basic",
+  name: "BasicPriceFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "price_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "price_ref01",
+        srcdatavar: "price_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-price_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPriceFlow"
+}

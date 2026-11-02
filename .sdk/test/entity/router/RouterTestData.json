@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "router": {
+      "ROUTER00": {
+        "id": "ROUTER00"
+      },
+      "ROUTER01": {
+        "id": "ROUTER01"
+      },
+      "ROUTER02": {
+        "id": "ROUTER02"
+      }
+    }
+  },
+  "new": {
+    "router": {
+      "router_ref01": {}
+    }
+  },
+  "requests": {
+    "POST /api/v1/router/launch": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /api/v1/router/instances/{id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

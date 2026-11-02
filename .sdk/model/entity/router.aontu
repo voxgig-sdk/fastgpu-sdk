@@ -1,0 +1,124 @@
+# Entity: router
+
+main: kit: entity: router: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "router"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          bf: [
+            "query"
+          ]
+          co: {
+            id: "POST /api/v1/router/launch"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/api/v1/router/launch"
+          q: {
+            "$action": "launch"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "router"
+            }
+            {
+              lit: "launch"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.instance`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          co: {
+            id: "DELETE /api/v1/router/instances/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "DELETE"
+          o: "/api/v1/router/instances/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "v1"
+            }
+            {
+              lit: "router"
+            }
+            {
+              lit: "instances"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.instance`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

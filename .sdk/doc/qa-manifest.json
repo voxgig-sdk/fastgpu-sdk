@@ -1,0 +1,20 @@
+{
+  "files": [
+    "SUMMARY.md"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "> Live GPU cloud price comparison across the whole market, as a REST API and MCP server. FastGPU brokers GPU capacity: describe the cluster you need and get competing quotes from capacity holders, each shown next to live prices from RunPod, Vast.ai, Lambda, the hyperscalers and more. Free for buyers, no sales calls. The GET /api/v1/router/instances/&#123;id&#125; operation was removed because it needs a FastGPU API key (401 without one). 2 GET operations that require a key or session were removed on 2026-10-23.\n>\n> `query` on GET /api/v1/match is marked required: the API answers 400 without a query or structured fields (verified 2026-10-25).",
+      "Absolute URL of this GPU&#39;s live price page, with every live offer.",
+      "FastGPU API key (`fgpu_live_`...), sent as an Authorization: Bearer header. Create one at /app.",
+      "Hours the provider bills for `duration_hours`: rounded up to whole hours on a per-hour meter and to whole minutes on a per-minute meter. Null when `duration_hours` was not sent.",
+      "How this provider&#39;s meter ticks for on-demand rental; varies means FastGPU has no verified figure.",
+      "Site-relative path of this GPU&#39;s live price page, for example /gpus/h100-sxm.",
+      "Success",
+      "When this price was fetched from the provider (ISO 8601).",
+      "`effective_usd_hr` times `billed_hours`, rounded up to the cent. GPU rental only: storage, data transfer, CPU and memory billed separately, and provider minimums are not included. Null when `duration_hours` was not sent."
+    ]
+  }
+}
